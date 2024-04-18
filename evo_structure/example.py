@@ -7,7 +7,7 @@ from envs import env_dict
 
 def main():
     parser = argparse.ArgumentParser(description=("Robot evo learning."))
-    parser.add_argument('--cfg', default=None)
+    parser.add_argument('--cfg', default='ant')
     parser.add_argument('--render', action='store_true', default=False)
     parser.add_argument('--num_threads', type=int, default=20)
     parser.add_argument('--gpu_index', type=int, default=0)

@@ -14,11 +14,25 @@ For installing **docker engine**, please refer to: https://docs.docker.com/engin
 
 > Note: Docker Engine is different from Docker Desktop. Docker Engine is the core of the docker service. While Docker Desktop is a visualized platform for managing containers and images.
 
+> 本步实现：in windows wsl2 + Docker Desktop, 在pycharm中打开dockerfile运行，以实现配置环境。（ps 还好可以使用cache的下载，总之多来几次good。  设置了阿里源，自己在浏览器是能get的之后就cmd又可以了strange ，但是一些包写在code里的网址还是需要tizi，需要使用rule mode vpn ） 
+> 小问题是不能搭配nvidia使用，目前先使用课题组 gpu6 的docker远程环境 尝试
+> 
+Exception: 
+Missing path to your environment variable. 
+Current values LD_LIBRARY_PATH=/usr/local/nvidia/lib:/usr/local/nvidia/lib64
+Please add following line to .bashrc:
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/root/.mujoco/mujoco210/bin
+
+> ref： https://docs.docker.com/get-started/02_our_app/
+> ref： https://docs.docker.com/get-started/05_persisting_data/
+
+
 Create docker volume named `ws` for files mapping (see what is docker volume at https://zhuanlan.zhihu.com/p/468642439):
 
 ```bash
 docker volume create --name ws --opt type=none --opt device={path-to-your-code-folder} --opt o=bind
 ```
+docker volume create --name ws --opt type=none --opt device=D:\00 researches\morph_evo\Robot-EVO-Learning --opt o=bind
 
 Use gpu in docker:
 ```bash
@@ -26,7 +40,7 @@ sudo sh ../nvidia-container-runtime-script.sh
 sudo apt-get install nvidia-container-runtime
 sudo systemctl restart doccker.service
 ```
-
+> gpu + Docker Desktop todo   in windows: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker
 
 ## Build the Environment
 Build dockerfile firstly.
